@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cont">
+
+    </div>
+    <button onclick="addpro()">add product</button>
+</body>
+</html>
+<script>
+    let cont=document.querySelector(".cont")
+    let data=JSON.parse(localStorage.getItem("inventory"))
+    display()
+    function display(){
+        data.forEach(function(el){
+            let card=document.createElement("div")
+            card.setAttribute("class","producthouse")
+            let c1=document.createElement("div")
+            c1.innerText=el.name
+            let c2=document.createElement("div")
+            c2.innerText=el.discription
+
+            let c3=document.createElement("div")
+            c3.innerText=el.price
+
+            let c4=document.createElement("img")
+            c4.setAttribute("src",el.imgurl)
+            
+            let c5=document.createElement("button")
+            c5.innerText="remove"
+        
+card.append(c4,c1,c2,c3,c5)
+cont.append(card)
+        })
+    }
+
+
+
+    function addpro(){
+        window.location.href=""
+    }
+</script>

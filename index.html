@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="text" placeholder="type" id="producttypr">
+        <input type="text" placeholder="discription" id="productdis">
+        <input type="text" placeholder="price" id="price">
+        <input type="text" placeholder="url" id="image">
+        <input type="submit" value="Add Product">
+    </form>
+    <button onclick="productpage()">SHOW PRODUCTS</button>
+</body>
+</html>
+<script>
+    let form=document.querySelector("form")
+    let arr=JSON.parse(localStorage.getItem("inventory"))  || []
+    form.addEventListener("submit",addproduct)
+    function addproduct(){
+        event.preventDefault()
+        let name=form.producttypr.value
+        let discription=form.productdis.value
+        let price=form.price.value
+        let imgurl=form.image.value
+        function dataconstruct(name,discription,price,imgurl){
+            this.name=name
+            this.discription=discription
+            this.price=price
+            this.imgurl=imgurl
+        }
+        let p=new dataconstruct(name,discription,price,imgurl)
+        arr.push(p)
+localStorage.setItem("inventory",JSON.stringify(arr))
+    }
+
+
+    function productpage(){
+        window.location.href="inventory.html"
+    }
+</script>
